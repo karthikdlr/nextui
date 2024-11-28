@@ -32,7 +32,7 @@ const Navbar = () => {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link href='/profile'>Profille</Link>
+              <Link href='/profile'>Profile</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href='/auth'>Logout</Link>
