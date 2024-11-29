@@ -23,7 +23,7 @@ export default  function PostsTable({ limit, title }: PostsTableProps) {
   let [data, setdata] = useState<any>(null)
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/post")
+    fetch("/api/post")
       .then(response => response.json())
       .then(data => setdata(data))
   }, [])
