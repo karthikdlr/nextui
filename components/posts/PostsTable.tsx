@@ -1,3 +1,5 @@
+"use client"
+import { useState, useEffect } from 'react'
 import {
   Table,
   TableBody,
@@ -16,7 +18,22 @@ interface PostsTableProps {
   title?: string;
 }
 
-const PostsTable = ({ limit, title }: PostsTableProps) => {
+export default  function PostsTable({ limit, title }: PostsTableProps) {
+
+  let [data, setdata] = useState(null)
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/post")
+      .then(response => response.json())
+      .then(data => setdata(data))
+  }, [])
+
+  // export default async function PostsTable({ limit, title }: PostsTableProps) {
+  //   const res = await fetch(
+  //     `http://localhost:3000/api/post`
+  //   );
+  //   const data = await res.json();
+
   // Sort posts in dec order based on date
   const sortedPosts: Post[] = [...posts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -27,7 +44,7 @@ const PostsTable = ({ limit, title }: PostsTableProps) => {
 
   return (
     <div className='mt-10'>
-      <h3 className='text-2xl mb-4 font-semibold'>{title ? title : 'Posts'}</h3>
+      <h3 className='text-2xl mb-4 font-semibold'>{title && data && data?.message.data?.color == "silver" ? title : 'Posts124'}</h3>
       <Table>
         <TableCaption>A list of recent posts</TableCaption>
         <TableHeader>
@@ -64,5 +81,3 @@ const PostsTable = ({ limit, title }: PostsTableProps) => {
     </div>
   );
 };
-
-export default PostsTable;
